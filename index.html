@@ -5,19 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Age Calculator</title>
+    <title>Animated Age Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <p id="currDate"> </p>
-        <p>Enter the DOB in format : (MM/DD/YYYY)</p>
-        <input type="text" placeholder="Enter your D.O.B" id="DOB">
-        <button id="CalcAge">Age</button>
+    <div class="background-animation"></div>
+
+    <div class="container glass-effect">
+        <h1 class="title">Age Calculator</h1>
+        <p id="currDate" class="current-date"></p>
+        <p class="instruction">Enter your Date of Birth (MM/DD/YYYY)</p>
+        <input type="text" placeholder="e.g., 01/15/1990" id="DOB" class="dob-input">
+        <button id="CalcAge" class="calculate-btn">Calculate Age</button>
     </div>
-  <div id="displayAge">
-      <p id="age"></p>
-  </div>
-    <script src="script.js">
-    </script>
+
+    <div id="displayAge" class="display-age-popup glass-effect">
+        <p id="age" class="age-text"></p>
+        <button id="closePopup" class="close-btn">&times;</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
