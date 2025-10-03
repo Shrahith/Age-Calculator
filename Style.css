@@ -1,76 +1,247 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:cursive;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary-bg: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    --secondary-bg: rgba(255, 255, 255, 0.1);
+    --text-color-light: #e0e0e0;
+    --text-color-dark: #333;
+    --accent-color: #ffeb3b;
+    --button-hover-bg: #fff;
+    --button-hover-text: #2575fc;
+    --border-color: rgba(255, 255, 255, 0.3);
+    --shadow-light: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 
-.container{
-    display:flex;
-    width:600px;
-    margin:auto;
-    margin-top:10%;
-    margin-bottom:10%;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-    background-color:darkslateblue;
-    box-shadow:8px 8px black;
-    color:white;
-    padding:5% 0%;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-#currDate{
-    font-size:40px;
-    margin:20px;
-    font-weight:bold;
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--primary-bg);
+    overflow: hidden; /* Hide overflow for background animation */
+    position: relative;
 }
 
-input{
-    font-size:20px;
-    padding:15px;
-    margin:20px;
-    text-align:center;
-    border-radius:20px;
-    border:1px solid yellow;
-    cursor:pointer;
+/* Background Animation */
+.background-animation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 0;
 }
 
-button{
-    font-size:20px;
-    padding:10px 20px;
-    border-radius:10px;
-    border:none;
-    background-color:yellow;
-    color:black;
-    margin:20px;
+.background-animation::before,
+.background-animation::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    animation: moveCircles 20s infinite ease-in-out;
+}
+
+.background-animation::before {
+    width: 200px;
+    height: 200px;
+    top: 10%;
+    left: 15%;
+    animation-delay: 0s;
+}
+
+.background-animation::after {
+    width: 150px;
+    height: 150px;
+    bottom: 10%;
+    right: 10%;
+    animation-delay: 10s;
+}
+
+@keyframes moveCircles {
+    0% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+    25% { transform: translate(50px, -50px) scale(1.1); opacity: 0.9; }
+    50% { transform: translate(0, 50px) scale(1); opacity: 0.8; }
+    75% { transform: translate(-50px, -50px) scale(0.9); opacity: 0.7; }
+    100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+}
+
+/* Glassmorphism Effect */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-light);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 1; /* Ensure container is above background animation */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    width: 90%;
+    max-width: 450px;
+    color: var(--text-color-light);
+    text-align: center;
+    animation: fadeIn 1s ease-out;
+}
+
+.title {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.current-date {
+    font-size: 1.2em;
+    margin: 15px 0 25px 0;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+.instruction {
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    opacity: 0.8;
+}
+
+.dob-input {
+    font-size: 1em;
+    padding: 12px 20px;
+    margin: 15px 0;
+    width: 80%;
+    max-width: 280px;
+    text-align: center;
+    border-radius: 25px;
+    border: 1px solid var(--border-color);
+    background: var(--secondary-bg);
+    color: var(--text-color-light);
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.dob-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.dob-input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px rgba(255, 235, 59, 0.5);
+}
+
+.calculate-btn {
+    font-size: 1.1em;
+    padding: 12px 30px;
+    border-radius: 25px;
+    border: none;
+    background-color: var(--accent-color);
+    color: var(--text-color-dark);
+    margin-top: 20px;
     text-transform: uppercase;
-    font-weight:bold;
-    cursor:pointer;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-button:hover{
-    background-color:white;
-    color:blue;
+.calculate-btn:hover {
+    background-color: var(--button-hover-bg);
+    color: var(--button-hover-text);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
-#displayAge{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    width:620px;
-    height:480px;
-    background-color:rgb(228, 91, 91);
-    border-radius:30px;
-    position:absolute;
-    top:19%;
-    left:30%;
+/* Display Age Popup */
+.display-age-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8); /* Start smaller */
+    padding: 30px 40px;
+    text-align: center;
+    color: #fff;
+    opacity: 0; /* Start invisible */
     visibility: hidden;
+    transition: all 0.4s ease-out;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-#age{
-    color:white;
-    font-size:50px;
-    margin:20px;
-    font-weight:bold;
+.display-age-popup.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1); /* Animate to full size */
+}
+
+.age-text {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: var(--text-color-light);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.close-btn:hover {
+    transform: rotate(90deg);
+    color: var(--accent-color);
+}
+
+/* Keyframe for general fade-in */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 30px;
+    }
+    .title {
+        font-size: 2em;
+    }
+    .current-date {
+        font-size: 1em;
+    }
+    .dob-input {
+        width: 90%;
+    }
+    .calculate-btn {
+        font-size: 1em;
+        padding: 10px 25px;
+    }
+    .age-text {
+        font-size: 2em;
+    }
+    .display-age-popup {
+        min-width: unset;
+        width: 85%;
+        padding: 25px 30px;
+    }
 }
